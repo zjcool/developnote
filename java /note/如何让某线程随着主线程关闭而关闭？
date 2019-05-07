@@ -1,0 +1,2 @@
+1.如何让某线程随着主线程关闭而关闭？
+答：thread.setDaemon(true)
