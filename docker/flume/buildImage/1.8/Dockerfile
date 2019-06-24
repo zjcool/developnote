@@ -1,6 +1,7 @@
 FROM centos:latest
 
-ARG FLUME_VERSION=1.6.0
+
+ARG FLUME_VERSION=1.8.0
 
 
 RUN yum update -y && \
@@ -12,8 +13,12 @@ RUN yum update -y && \
 
 ENV JAVA_HOME=/usr
 ENV AGENT=agent
-ADD zookeeper-3.3.6.jar /apache-flume/lib/
+ADD zookeeper-3.4.12.jar /apache-flume/lib/
 ADD glabfilesink-1.0.jar /apache-flume/lib/
+
+ENV TZ=Asia/Shanghai
+#设置时区
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
 
 WORKDIR /apache-flume
 
